@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://oopy3lps33rp"]
+
+[ext_resource type="Script" uid="uid://psmdfgnorvrw" path="res://scripts/pong.gd" id="1_nth8n"]
+[ext_resource type="PackedScene" uid="uid://bmed41fkbopnt" path="res://scenes/hud.tscn" id="2_7aeas"]
+[ext_resource type="PackedScene" uid="uid://3bj65cj3w5ps" path="res://scenes/paddel.tscn" id="2_5420t"]
+[ext_resource type="PackedScene" uid="uid://bkgsgplmdrdk4" path="res://scenes/ball.tscn" id="3_ik6sa"]
+[ext_resource type="PackedScene" uid="uid://mncx6o0d7l20" path="res://scenes/wall.tscn" id="4_ploue"]
+[ext_resource type="PackedScene" uid="uid://buom67aopybpw" path="res://scenes/score_detector.tscn" id="5_60vo6"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ftxu3"]
+
+[node name="Pong" type="Node2D"]
+script = ExtResource("1_nth8n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="CanvasLayer" instance=ExtResource("2_7aeas")]
+
+[node name="Background" type="MeshInstance2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(640.22253, 359.62503)
+scale = Vector2(1280, 720)
+mesh = SubResource("QuadMesh_ftxu3")
+metadata/_edit_lock_ = true
+
+[node name="PaddelOne" parent="." instance=ExtResource("2_5420t")]
+position = Vector2(50, 360)
+is_player_one = true
+
+[node name="PaddelTwo" parent="." instance=ExtResource("2_5420t")]
+position = Vector2(1230, 360)
+
+[node name="Ball" parent="." instance=ExtResource("3_ik6sa")]
+position = Vector2(640, 360)
+
+[node name="WallUp" parent="." instance=ExtResource("4_ploue")]
+position = Vector2(640, 0)
+
+[node name="WallDown" parent="." instance=ExtResource("4_ploue")]
+position = Vector2(640, 720)
+
+[node name="ScoreDetectorLeft" parent="." instance=ExtResource("5_60vo6")]
+position = Vector2(0, 360)
+is_left = true
+
+[node name="ScoreDetectorRight" parent="." instance=ExtResource("5_60vo6")]
+position = Vector2(1280, 360)
+
+[node name="StartDelay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="ball_out" from="ScoreDetectorLeft" to="." method="_on_score_detector_left_ball_out"]
