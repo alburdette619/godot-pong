@@ -1,0 +1,124 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyiefasrx42nk"]
+
+[ext_resource type="ButtonGroup" uid="uid://cvtg7hpxm3nlk" path="res://scenes/start_screen/player_count_button_group.tres" id="1_tx5wa"]
+[ext_resource type="Script" uid="uid://du31sviosw52" path="res://scripts/start_screen.gd" id="1_wsdqa"]
+[ext_resource type="ButtonGroup" uid="uid://dxtbmt6gsf2og" path="res://scenes/start_screen/difficulty_button_group.tres" id="2_pvrqi"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_o7i0r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_he1sj"]
+font_size = 96
+
+[node name="StartScreen" type="Node2D"]
+script = ExtResource("1_wsdqa")
+
+[node name="Background" type="MeshInstance2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(640.22253, 359.62503)
+scale = Vector2(1280, 720)
+mesh = SubResource("QuadMesh_o7i0r")
+metadata/_edit_lock_ = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.5
+offset_top = -101.0
+offset_right = 252.5
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Pong"
+label_settings = SubResource("LabelSettings_he1sj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Labels" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Players: "
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/Labels"]
+layout_mode = 2
+text = "Difficulty: "
+
+[node name="ButtonGroups" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups"]
+layout_mode = 2
+
+[node name="SinglePlayer" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("1_tx5wa")
+text = "Player vs. CPU"
+
+[node name="TwoPlayer" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_tx5wa")
+text = "Player vs Player"
+
+[node name="CpuOnly" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("1_tx5wa")
+text = "CPU vs CPU"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups"]
+layout_mode = 2
+
+[node name="EasyDifficulty" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups/HBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_pvrqi")
+text = "Player vs. CPU"
+
+[node name="NormalDifficulty" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups/HBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("2_pvrqi")
+text = "Player vs Player"
+
+[node name="HardDifficulty" type="Button" parent="CanvasLayer/Control/VBoxContainer/HBoxContainer/ButtonGroups/HBoxContainer2"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("2_pvrqi")
+text = "CPU vs CPU"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Start!"
+
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/MarginContainer/StartButton" to="." method="_on_start_button_pressed"]
