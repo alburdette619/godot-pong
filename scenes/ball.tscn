@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkgsgplmdrdk4"]
+[gd_scene load_steps=6 format=3 uid="uid://bkgsgplmdrdk4"]
 
 [ext_resource type="Script" uid="uid://bflk7km14f5u2" path="res://scripts/ball.gd" id="1_7s4qf"]
+[ext_resource type="AudioStream" uid="uid://t5sgmeung3f0" path="res://assets/wall.wav" id="2_f7cbr"]
+[ext_resource type="AudioStream" uid="uid://snenydrgxpgj" path="res://assets/paddel.wav" id="3_4dx81"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_n1dj2"]
 
@@ -15,3 +17,9 @@ mesh = SubResource("QuadMesh_n1dj2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7s4qf")
+
+[node name="WallSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_f7cbr")
+
+[node name="PaddelSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_4dx81")

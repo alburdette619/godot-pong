@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3bj65cj3w5ps"]
 
-[ext_resource type="Script" uid="uid://ce77u24ry6meo" path="res://scripts/padel.gd" id="1_v28pt"]
+[ext_resource type="Script" uid="uid://ce77u24ry6meo" path="res://scripts/paddel.gd" id="1_v28pt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_46ygl"]
 
